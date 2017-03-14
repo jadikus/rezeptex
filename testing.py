@@ -8,17 +8,17 @@ from fraction.fraction import Fraction, read_fraction_from_string
 #print(l.ingredients)
 #l.print_list()
 
-#r = Recipe('recipexample')
-#for ind in r.ingridientlists:
-#    print(ind)
+r = Recipe('recipexample')
+for ind in r.ingridientlists:
+    ind.print_list()
 
 
 
 
 a = Fraction(2, 3)
-b = Fraction(1, 3)
+b = read_fraction_from_string('51/50', 'b')
 
-print (a / b)
+print (b)
 
 
 

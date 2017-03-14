@@ -1,4 +1,5 @@
 from tools.stringtools import striplr
+from fraction.fraction import read_fraction_from_string
 
 class Recipe(object):
 
@@ -12,6 +13,8 @@ class Recipe(object):
         set the keywords for the style of a default recipe
 
         :param recipe_keys:  list of strings with capital letters (according to the style of the desired recipe)
+        :param string ikey: keyword to look for, that begins the list of ingredients
+        :param string skey: keyword to look for, that begins the list of steps
         """
         Recipe.keys = recipe_keys
         Recipe.ingredient_key = ikey
@@ -133,14 +136,20 @@ class Ingredient(object):
     @staticmethod
     def is_quantity(string):
         """tests, whether the given string is a number or a fraction"""
+        try:
+            read_fraction_from_string(string)
+            return True
+        except:
+            return False
+
 
 
     def from_line(self, string):
         parts = string.split()
 
         try:
-            is_quantity(parts[0])
-            self.quantity = float(parts[0])
+            self.is_quantity(parts[0])
+            self.quantity = read_fraction_from_string(parts[0])   #todo: read_quantity function to be able to read 1.5, 3/2, 1 1/2 as the same quantity
             if parts[1].upper() in IngredientList.units:
                 self.unit = IngredientList.units[parts[1].upper()]
                 name = ''
