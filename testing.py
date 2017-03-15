@@ -1,24 +1,21 @@
-from content.recipe import Recipe, Ingredient, IngredientList
+from content.recipe import Recipe
 from fraction.fraction import Fraction, read_fraction_from_string
+import re
 
-#f = open('Zutaten', 'r')
-#s = f.read()
 
-#l = IngredientList(s)
-#print(l.ingredients)
-#l.print_list()
+
 
 r = Recipe('recipexample')
+
+
+r.Quantity.set_representation_mode('FRACINT')
+
 for ind in r.ingridientlists:
     ind.print_list()
 
+for step in r.steps:
+    print(step.bodytext)
 
-
-
-a = Fraction(2, 3)
-b = read_fraction_from_string('51/50', 'b')
-
-print (b)
 
 
 
