@@ -1,6 +1,10 @@
 from content.recipe import Recipe
+import os
 
 class CookBook(object):
+
+    def __init__(self):
+        self.recipe_list = list()
 
     def read_directory(self, path):
         """
@@ -8,7 +12,18 @@ class CookBook(object):
         :param path: The path to the raw recipefiles (either .txt or .rcp [own invention])
         :return: a list of all file paths
         """
-        pass
+        for f in os.listdir(path):
+            filename = path + '\\' + f
+            r = Recipe()
+            r.read_recipe(filename)
+            self.recipe_list.append(r)
+
+    def write_cookbookindex(self):
+        """
+        creates a new folder CBX (if not existent) in that a cbx.file ist written containing all information on the recipes in the open CookBook
+
+        :return:
+        """
 
     def read_cookbookindex(self,path):
         """

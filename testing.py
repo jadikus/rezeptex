@@ -1,21 +1,17 @@
 from content.recipe import Recipe
+from content.CookBook import CookBook
 from fraction.fraction import Fraction, read_fraction_from_string
 import re
 
 
 
 
-r = Recipe('recipexample')
+cb = CookBook()
+cb.read_directory("recipes_raw")
 
 
-r.Quantity.set_representation_mode('FRACINT')
-
-for ind in r.ingridientlists:
-    ind.print_list()
-
-for step in r.steps:
-    print(step.bodytext)
-
+for r in cb.recipe_list:
+    print r
 
 
 
