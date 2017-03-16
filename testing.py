@@ -9,10 +9,7 @@ import re
 cb = CookBook()
 cb.read_directory("recipes_raw")
 
-
-for r in cb.recipe_list:
-    print r
-
+print(len(cb.recipe_list))
 
 
 #for key in r.relevant_keys():
